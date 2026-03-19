@@ -8,7 +8,7 @@ const Navbar = () => {
             <img src={assets.logo} alt="" />
             <ul>
                 <NavLink>
-                    <li>Home</li>
+                    <li className='text-red-900'>Home</li>
                     <hr/>
                 </NavLink>
                 <NavLink>
