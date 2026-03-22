@@ -8,3 +8,7 @@
 ::-webkit-scrollbar{
     @apply hidden
 }
+
+@utility grid-cols-auto {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
