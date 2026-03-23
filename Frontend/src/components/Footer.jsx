@@ -38,7 +38,6 @@ const Footer = () => {
             {/* copyright text  */}
             <hr />
             <p className='py-3 text-sm text-center font-mono'>© 2026 ClinicLink. All Rights Reserved.</p>
-            <p>hi</p>
         </div>
     </div>
   )
