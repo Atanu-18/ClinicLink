@@ -38,10 +38,10 @@ const Navbar = () => {
                         <img src={assets.profile_pic} alt="" className='w-8 rounded-full' />
                         <img src={assets.dropdown_icon} alt="" className='w-2.5' />
                         <div className='absolute top-0 right-0 pt-14 text-base font-medium z-20 hidden group-hover:block'>
-                            <div className='min-w-48 bg-gradient-to-r from-[#4fbbed] to-[#43f484] text-white rounded flex flex-col gap-4 p-4 shadow-lg'>
-                                <p onClick={()=>navigate('/my-profile')} className='hover:text-black'>My Profile</p>
-                                <p onClick={()=>navigate('/my-appointments')} className='hover:text-black'>My Appointments</p>
-                                <p onClick={()=>setToken(false)} className='hover:text-black'>Logout</p>
+                            <div className='min-w-48 bg-gray-100 rounded flex flex-col gap-4 p-4 shadow-lg'>
+                                <p onClick={()=>navigate('/my-profile')}>My Profile</p>
+                                <p onClick={()=>navigate('/my-appointments')}>My Appointments</p>
+                                <p onClick={()=>setToken(false)}>Logout</p>
                             </div>
                         </div>
                     </div> : <button onClick={() => navigate('/login')} className='bg-gradient-to-r from-[#0ea5e9] to-[#22c55e] text-white cursor-pointer px-8 py-3 rounded-full font-semibold hidden md:block hover:scale-105 transition-all duration-300 shadow-md hover:shadow-xl'>
