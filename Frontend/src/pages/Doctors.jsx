@@ -12,7 +12,7 @@ const Doctors = () => {
 
   const navigate = useNavigate()
 
-  const { Doctors } = useContext(AppContext)
+  const { doctors } = useContext(AppContext)
 
   const applyFilter = () => {
     if (speciality) {
@@ -28,7 +28,7 @@ const Doctors = () => {
 
   return (
     <div>
-      <p className='text-gray-600'>Browse through the doctors specialist.</p>
+      <p className='text-gray-600'>Browse through the doctors specialist...</p>
       <div className='flex flex-col sm:flex-row items-start gap-5 mt-5'>
         <div className='flex flex-col gap-4 text-sm text-gray-600'>
           <p onClick={()=>speciality === 'General physician' ? navigate('/doctors') : navigate('/doctors/General physician')} className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${speciality === "General physician" ? "bg-indigo-100 text-black" : ""}`}>General physician</p>
