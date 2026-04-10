@@ -38,7 +38,7 @@ const doctorSchema = new mongoose.Schema({
         type: Boolean,
         default: true
     },
-    fee: {
+    fees: {
         type: Number,
         required: true
     },
