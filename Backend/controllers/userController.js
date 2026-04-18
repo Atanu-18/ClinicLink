@@ -4,28 +4,28 @@ import userModel from '../models/userModel.js'
 import jwt from 'jsonwebtoken'
 
 // API to register user
-const registerUser = async(req,res) => {
+const registerUser = async (req, res) => {
     try {
-        
-        const {name, email, password} = req.body
+
+        const { name, email, password } = req.body
 
         if (!name || !password || !email) {
-            return res.json({success:false,message: "Missing Details"})
+            return res.json({ success: false, message: "Missing Details" })
         }
 
         // validating email format
         if (!validator.isEmail(email)) {
-            return res.json({success:false,message: "enter a valid email"})
+            return res.json({ success: false, message: "enter a valid email" })
         }
 
         // validating  a strong password
         if (password.length < 8) {
-            return res.json({success:false,message: "enter a strong password"})
+            return res.json({ success: false, message: "enter a strong password" })
         }
 
         // hasing user password
         const salt = await bycrypt.genSalt(10)
-        const hashedPassword = await bycrypt.hash(password,salt)
+        const hashedPassword = await bycrypt.hash(password, salt)
 
         const userData = {
             name,
@@ -36,45 +36,63 @@ const registerUser = async(req,res) => {
         const newUser = new userModel(userData)
         const user = await newUser.save()
         //_id 
-        const token = jwt.sign({id:user._id}, process.env.JWT_SECRET)
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
 
-        res.json({success:true,token})
+        res.json({ success: true, token })
 
 
     } catch (error) {
         console.log(error);
-        res.json({success:false, message: error.message})
+        res.json({ success: false, message: error.message })
     }
 }
 
 
 
 // API for user login
-const loginUser = async(req,res) =>{
+const loginUser = async (req, res) => {
     try {
-        
-        const {email,password} = req.body
 
-        const user = await userModel.findOne({email})
+        const { email, password } = req.body
+
+        const user = await userModel.findOne({ email })
 
         if (!user) {
-            return res.json({success:false, message: "User does not exist"})
+            return res.json({ success: false, message: "User does not exist" })
         }
 
-        const isMatch = await bycrypt.compare(password,user.password)
+        const isMatch = await bycrypt.compare(password, user.password)
 
         if (isMatch) {
-            const token = jwt.sign({id:user._id}, process.env.JWT_SECRET)
-            res.json({success:true, token})
+            const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
+            res.json({ success: true, token })
         } else {
-            res.json({success:false,message:"Invalid Credentials"})
+            res.json({ success: false, message: "Invalid Credentials" })
         }
 
     } catch (error) {
         console.log(error);
-        res.json({success:false, message: error.message})
+        res.json({ success: false, message: error.message })
     }
 }
 
 
-export {registerUser, loginUser}
+
+// API to get users profile data
+const getProfile = async (req, res) => {
+    try {
+
+        // const { userId } = req.body
+        const  userId  = req.userId
+        const userData = await userModel.findById(userId).select('-password')
+
+        res.json({ success: true, userData })
+
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: error.message })
+    }
+}
+
+
+export { registerUser, loginUser, getProfile }
