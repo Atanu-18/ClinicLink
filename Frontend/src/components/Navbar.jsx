@@ -6,7 +6,7 @@ import { AppContext } from '../context/AppContext'
 const Navbar = () => {
     const navigate = useNavigate()
     const [showMenu, setShowMenu] = useState(false)
-    const {token,setToken} = useContext(AppContext)
+    const {token,setToken, userData} = useContext(AppContext)
 
     const logout = () => {
         setToken(false)
@@ -46,13 +46,13 @@ const Navbar = () => {
 
             <div className='flex items-center gap-4'>
                 {/* Profile / Create Account */}
-                {token ? (
+                {token && userData ? (
                     <div ref={profileRef} className='relative'>
                         <div
                             className='flex items-center gap-2 cursor-pointer'
                             onClick={() => setShowProfileDropdown(prev => !prev)}
                         >
-                            <img src={assets.profile_pic} alt="Profile" className='w-8 rounded-full' />
+                            <img src={userData.image} alt="Profile" className='w-8 rounded-full' />
                             <img src={assets.dropdown_icon} alt="Dropdown" className='w-2.5' />
                         </div>
 
