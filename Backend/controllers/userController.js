@@ -288,7 +288,14 @@ const verifyRazorpay = async(req,res) => {
         const {razorpay_order_id} = req.body
         const orderInfo = await razorpayInstance.orders.fetch(razorpay_order_id)
 
-        console.log(orderInfo);
+        // console.log(orderInfo);
+
+        if (orderInfo.status === 'paid') {
+            await appointmentModel.findByIdAndUpdate(orderInfo.receipt,{payment:true})
+            res.json({success:true,message:"Payment successful"})
+        } else {
+            res.json({success:false,message:"Payment failed"})
+        }
         
 
     } catch (error) {
@@ -297,4 +304,4 @@ const verifyRazorpay = async(req,res) => {
     }
 }
 
-export { registerUser, loginUser, getProfile, updateProfile, bookAppointment, listAppointment, cancelAppointment, paymentRazorpay, verifyRazorpay }
+export { registerUser, loginUser, getProfile, updateProfile, bookAppointment, listAppointment, cancelAppointment, paymentRazorpay,verifyRazorpay }
