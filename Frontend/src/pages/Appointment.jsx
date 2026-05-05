@@ -191,7 +191,11 @@ const Appointment = () => {
       </div>
 
       {/* related doctors list  */}
-      <RelatedDoctors docId={docId} speciality={docInfo.speciality} />
+      {/* <RelatedDoctors docId={docId} speciality={docInfo.speciality} /> */}
+      <RelatedDoctors docId={docId} speciality={docInfo.specialty} />
+      {/* console.log("docInfo:", docInfo)
+console.log("speciality:", docInfo?.specialty)
+console.log("all doctors:", doctors) */}
     </div>
   )
 }
