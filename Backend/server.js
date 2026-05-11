@@ -18,7 +18,9 @@ app.use(express.json())
 // app.use(cors());
 // middleware
 app.use(cors({
-  origin: ["https://clinic-link-chq1a7hb6-atanu2697-gmailcoms-projects.vercel.app"],
+  origin: ["https://clinic-link-chq1a7hb6-atanu2697-gmailcoms-projects.vercel.app",
+    "https://clinic-link-26ds.vercel.app"
+  ],
   credentials: true
 }))
 
