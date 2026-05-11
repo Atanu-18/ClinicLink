@@ -15,7 +15,12 @@ connectCloudinary()
 
 // middlewares
 app.use(express.json())
-app.use(cors());
+// app.use(cors());
+// middleware
+app.use(cors({
+  origin: ["https://clinic-link-chq1a7hb6-atanu2697-gmailcoms-projects.vercel.app"],
+  credentials: true
+}))
 
 // api endpoints
 app.use('/api/admin', adminRouter);
